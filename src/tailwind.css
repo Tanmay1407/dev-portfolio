@@ -1,0 +1,4 @@
+/* Reset and basic styles for tailwind processing on first run */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

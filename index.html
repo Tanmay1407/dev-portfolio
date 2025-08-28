@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="https://img.icons8.com/color/48/null/source-code.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <title>Tanmay Patel || Portfolio</title>
+    <meta name="description" content="Modern developer portfolio built with React, Vite and TailwindCSS" />
+  <link rel="canonical" href="https://deep-dubey-latest.netlify.app/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-950 text-slate-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Redirect unique deploy URLs (subdomain with deploy id) to primary URL
+      (function() {
+        var primary = '';
+        var host = window.location.host;
+        if (host.includes('')) {
+          var target = primary + window.location.pathname + window.location.search + window.location.hash;
+          window.location.replace(target);
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+import { motion } from 'framer-motion'
+import { useRef, useEffect, useState } from 'react'
+import AccentBlob from './AccentBlob'
+import CloudAnimation from './CloudAnimation'
+import MouseScroll from './MouseScroll'
+export default function Skills() {
+  const skills = [
+    { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', experience: '3+ Years', description: 'Building dynamic and responsive user interfaces.' },
+    { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', experience: '2+ Years', description: 'Enhancing code quality and maintainability.' },
+    { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg', experience: '3+ Years', description: 'Rapidly styling applications with utility-first CSS.' },
+    { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', experience: '3+ Years', description: 'Developing scalable server-side applications.' },
+    { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', experience: '3+ Years', description: 'Creating robust APIs and web servers.' },
+    { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', experience: '2+ Years', description: 'Managing NoSQL databases for flexible data storage.' },
+    { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', experience: '2+ Years', description: 'Working with powerful relational databases.' },
+    { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', experience: '2+ Years', description: 'Containerizing applications for consistent deployment.' },
+    { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg', experience: '1+ Year', description: 'Leveraging cloud services for scalable solutions.' },
+    { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', experience: '5+ Years', description: 'Managing code versions and collaborative development.' },
+    { name: 'Jest', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg', experience: '2+ Years', description: 'Testing JavaScript applications for reliability.' },
+    { name: 'Cypress', icon: 'https://i.ibb.co/4j7xS4B/images.png', experience: '1+ Year', description: 'Conducting end-to-end testing for web apps.' }
+  ]
+
+  const trackRef = useRef(null)
+	const [canPrev, setCanPrev] = useState(false)
+	const [canNext, setCanNext] = useState(false)
+
+  const updateArrows = () => {
+		const el = trackRef.current
+		if (!el) return
+		const { scrollLeft, scrollWidth, clientWidth } = el
+		setCanPrev(scrollLeft > 0)
+		setCanNext(scrollLeft + clientWidth < scrollWidth - 1)
+	}
+
+	const scrollByCards = (dir) => {
+		const el = trackRef.current
+		if (!el) return
+		const card = el.querySelector('.skill-card-wrapper')
+		const gap = 24 // approx gap-6
+		const amount = card ? card.getBoundingClientRect().width + gap : el.clientWidth * 0.8
+		el.scrollBy({ left: dir * amount, behavior: 'smooth' })
+		setTimeout(updateArrows, 300)
+	}
+
+	useEffect(() => {
+		updateArrows()
+		const el = trackRef.current
+		if (!el) return
+		const onScroll = () => updateArrows()
+		el.addEventListener('scroll', onScroll, { passive: true })
+		const onResize = () => updateArrows()
+		window.addEventListener('resize', onResize)
+		return () => {
+			el.removeEventListener('scroll', onScroll)
+			window.removeEventListener('resize', onResize)
+		}
+	}, [])
+
+  return (
+  <section id="skills" className="relative min-h-screen overflow-hidden py-24 flex items-center justify-center">
+      {/* Animated aurora/cloud background (like Hero, but different colors) */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <AccentBlob className="absolute -top-32 -left-24" size="h-[30rem] w-[30rem]" colors={['#a3e635','#f59e0b','#8b5cf6']} opacity={0.15} delay={0} duration={2.1} floatDistance={70} horizontalDistance={90} />
+        <AccentBlob className="absolute -top-40 right-[-8rem]" size="h-[32rem] w-[32rem]" colors={['#22d3ee','#a3e635','#f59e0b']} opacity={0.13} delay={0.3} duration={2.3} floatDistance={80} horizontalDistance={100} />
+        <AccentBlob className="absolute bottom-[-8rem] left-1/3 -translate-x-1/2" size="h-[28rem] w-[28rem]" colors={['#f472b6','#a3e635','#8b5cf6']} opacity={0.12} delay={0.6} duration={2.2} floatDistance={60} horizontalDistance={85} />
+        <AccentBlob className="absolute bottom-[-4rem] right-1/4" size="h-[24rem] w-[24rem]" colors={['#f59e0b','#f472b6','#a3e635']} opacity={0.10} delay={0.9} duration={2.4} floatDistance={50} horizontalDistance={75} />
+      </div>
+  <div className="container-px mx-auto w-full h-full flex flex-col justify-center min-h-full">
+  <MouseScroll href="#projects" />
+        <h2 className="section-title bg-gradient-to-r from-fuchsia-200 to-cyan-200 bg-clip-text text-transparent">Skills</h2>
+        <div className="relative mt-8">
+          {/* Controls for mobile screens */}
+					<button
+						aria-label="Previous"
+						onClick={() => scrollByCards(-1)}
+						disabled={!canPrev}
+						aria-disabled={!canPrev}
+						className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/10 bg-slate-900/60 p-2 text-white/80 backdrop-blur hover:bg-slate-900/80 disabled:cursor-not-allowed disabled:opacity-40 block md:hidden"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+					</button>
+					<button
+						aria-label="Next"
+						onClick={() => scrollByCards(1)}
+						disabled={!canNext}
+						aria-disabled={!canNext}
+						className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/10 bg-slate-900/60 p-2 text-white/80 backdrop-blur hover:bg-slate-900/80 disabled:cursor-not-allowed disabled:opacity-40 block md:hidden"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+					</button>
+
+          <div 
+            ref={trackRef}
+            className="hide-scrollbar -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 py-8 md:mx-0 md:px-0 md:snap-none md:flex-wrap md:justify-center"
+          >
+            {skills.map((skill, index) => (
+              <motion.div
+                key={index}
+                className="skill-card-wrapper shrink-0 snap-center md:shrink"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="skill-card">
+                  <div className="skill-card-front">
+                    <img src={skill.icon} alt={skill.name} className="h-12 w-12" />
+                    <span className="mt-2 text-lg font-semibold">{skill.name}</span>
+                  </div>
+                  <div className="skill-card-back">
+                    <h3 className="text-lg font-bold">{skill.name}</h3>
+                    <p className="font-semibold text-sky-300">{skill.experience}</p>
+                    <p className="mt-2 text-sm text-slate-300">{skill.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

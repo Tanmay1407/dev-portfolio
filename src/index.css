@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #0ea5e9; /* sky-500 */
+  --brand-600: #0284c7; /* sky-600 */
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+
+/****************** Custom Components ******************/
+.container-px {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+.section {
+  @apply container-px max-w-6xl mx-auto py-20 sm:py-24;
+}
+.section-title {
+  @apply text-3xl sm:text-4xl font-extrabold tracking-tight text-white;
+}
+.section-subtitle {
+  @apply text-slate-400 mt-2;
+}
+.btn {
+  @apply inline-flex items-center gap-2 rounded-full border-2 border-indigo-400/50 bg-indigo-400/10 px-3 py-1.5 text-xs font-semibold text-white transition-all duration-300 hover:scale-105 hover:border-indigo-400 hover:bg-indigo-400/20 sm:px-4 sm:py-2 sm:text-sm md:px-6 md:py-3 md:text-base;
+}
+.card {
+  @apply rounded-2xl bg-slate-900/60 border border-white/10 shadow-xl shadow-sky-900/10 backdrop-blur;
+}
+.glass {
+  @apply bg-white/5 backdrop-blur-lg border border-white/10;
+}
+.grid-auto-fill {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/****************** Animations ******************/
+.hero-gradient {
+  background: radial-gradient(1000px 600px at 10% -10%, rgba(56,189,248,.25), transparent 50%),
+              radial-gradient(600px 400px at 80% 0%, rgba(14,165,233,.25), transparent 50%),
+              radial-gradient(400px 400px at 50% 100%, rgba(14,165,233,.15), transparent 50%);
+}
+
+.scroll-indicator {
+  @apply fixed left-0 top-0 h-1 bg-sky-500 z-50 origin-left;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Animated gradient for the glow effect */
+@keyframes glow-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-glow-gradient {
+  background-size: 200% 200%;
+  animation: glow-gradient 4s ease infinite;
+}
+
+/* New animated gradient for Navbar */
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradient-animation 2s ease infinite;
+}
+
+
+/* Marquee for skills */
+@keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
+.marquee { overflow: hidden; position: relative; }
+.marquee-content { display: flex; gap: 1rem; width: max-content; animation: marquee 40s linear infinite; }
+.marquee:hover .marquee-content { animation-play-state: paused; }
+.marquee-reverse .marquee-content { animation-direction: reverse; }
+
+/* Skill Card Flip Animation */
+.skill-card-wrapper {
+  perspective: 1000px;
+  width: 160px;
+  height: 160px;
+}
+
+.skill-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s;
+  cursor: pointer;
+}
+
+.skill-card-wrapper:hover .skill-card {
+  transform: rotateY(180deg);
+}
+
+.skill-card-front,
+.skill-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.75rem;
+  border: 1px solid theme('colors.white / 0.1');
+  background-color: theme('colors.white / 0.05');
+  padding: 1rem;
+  text-align: center;
+}
+
+.skill-card-back {
+  transform: rotateY(180deg);
+  background-color: theme('colors.slate.800');
+}
+
+/* Custom bounce animation */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 25px 30px -15px rgba(255, 255, 255, 0.25);
+  }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 1s infinite;
+}
+
+.mouse {
+  width: 20px;
+  height: 34px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  position: relative;
+  opacity: 0.75;
+  animation: mouse-bounce 1.5s infinite;
+}
+
+.scroll-wheel {
+  width: 3px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 2px;
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll-wheel-color-change 1.5s infinite;
+}
+
+@keyframes mouse-bounce {
+  0%, 100% {
+    transform: translateY(-15%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    border-color: #fff;
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    border-color: #06b6d4; /* Cyan color */
+  }
+}
+
+@keyframes scroll-wheel-color-change {
+  0%, 100% {
+    transform: translate(-50%, 0);
+    background-color: #fff;
+  }
+  50% {
+    transform: translate(-50%, 8px);
+    background-color: #ec4899; /* Fuchsia color */
+  }
+}
+
+/* General styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-950 text-slate-200;
+}
+
+@layer components {
+  .scrollbar-thin-white::-webkit-scrollbar {
+    height: 4px;
+  }
+  .scrollbar-thin-white::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin-white::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+  }
+  .scrollbar-thin-white::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+}
