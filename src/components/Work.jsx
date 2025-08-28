@@ -141,14 +141,14 @@ export default function Work() {
                             className="w-full text-left group"
                           >
                             <div className="flex items-center justify-between">
-                              <h3 className="text-2xl font-bold text-white">
+                              <h3 className="text-xl font-bold text-white">
                                 {role.title} · <span className="bg-gradient-to-r from-fuchsia-200 to-cyan-200 bg-clip-text text-transparent">{jobs[activeTab].company}</span>
                               </h3>
                               <span className={`text-white/60 transform transition-transform duration-300 ${expandedRoles[role.title] ? 'rotate-180' : ''}`}>
                                 ▼
                               </span>
                             </div>
-                            <p className="text-base text-white/60 tracking-wider uppercase mt-1">{role.period}</p>
+                            <p className="text-sm text-white/60 tracking-wider uppercase mt-1">{role.period}</p>
                           </button>
                           
                           {/* Expandable achievements */}
@@ -165,7 +165,7 @@ export default function Work() {
                               {role.achievements.map(achievement => (
                                 <li key={achievement} className="flex items-start gap-3 text-white/80 group">
                                   <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-cyan-400 transition-transform duration-300 group-hover:scale-125" />
-                                  <span className="text-lg">{achievement}</span>
+                                  <span className="text-base">{achievement}</span>
                                 </li>
                               ))}
                             </ul>

@@ -5,35 +5,35 @@ import MouseScroll from './MouseScroll'
 
 export default function About() {
   const highlights = [
-    'Pixel‑perfect UI with accessible, responsive layouts',
-    'Clean, testable code with performance in mind',
-    'End‑to‑end delivery from idea to production',
-    'Strong collaboration with design and product'
+    'Full-stack development with a focus on backend systems',
+    'Building and consuming RESTful APIs',
+    'Database design and management (SQL & NoSQL)',
+    'Agile methodologies and collaborative development'
   ]
 
   const pillars = [
     {
-      icon: <FaCode className="text-fuchsia-300" />,
-      title: 'Frontend Excellence',
-      text: 'Modern React, TypeScript, motion and design systems for delightful UX.'
+      icon: <FaServer className="text-cyan-300" />,
+      title: 'Backend Systems',
+      text: 'Developing scalable applications with Node.js, Express, Java, and Spring Boot.'
     },
     {
-      icon: <FaServer className="text-cyan-300" />,
-      title: 'Backend & APIs',
-      text: 'Node, REST/GraphQL, auth, caching and data modeling that scale.'
+      icon: <FaCode className="text-fuchsia-300" />,
+      title: 'AI & Data',
+      text: 'Exploring Generative AI and managing data with MongoDB and SQL databases.'
     },
     {
       icon: <FaTools className="text-emerald-300" />,
-      title: 'DevOps Mindset',
-      text: 'CI/CD, Docker, monitoring and performance budgets baked in.'
+      title: 'Modern Tooling',
+      text: 'Utilizing CI/CD, Docker, and other tools to streamline development and deployment.'
     }
   ]
 
   const metrics = [
-    { k: '4+', v: 'Years' },
-    { k: '30+', v: 'Projects' },
-    { k: '10+', v: 'Clients' },
-    { k: '5', v: 'OSS PRs' }
+    { k: '2+', v: 'Years' },
+    { k: '15+', v: 'Projects' },
+    { k: '350+', v: 'LeetCode Questions' },
+    { k: '8+', v: 'Certifications' }
   ]
 
   return (
@@ -58,16 +58,15 @@ export default function About() {
               </span>
             </div>
             <h2 className="bg-gradient-to-r from-fuchsia-200 to-cyan-200 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl">
-              Crafting Digital Experiences
+              Crafting Innovative Software Solutions
             </h2>
             <p className="max-w-2xl text-white/80">
-              I’m a full‑stack developer focused on crafting inclusive user experiences and scalable systems. I love pairing
-              design sensibility with engineering rigor to ship quality software.
+              I'm a Software Engineer dedicated to building high-quality, scalable, and efficient applications. My expertise spans across various technologies including JavaScript/Node.js and Java/Spring Boot for robust backend systems, and I have a keen interest in leveraging Generative AI to create intelligent solutions. I enjoy solving complex problems and turning ideas into reality through code.
             </p>
             <ul className="mt-2 grid gap-2 text-white/80 sm:grid-cols-2">
               {highlights.map((h) => (
-                <li key={h} className="flex items-start gap-2">
-                  <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                <li key={h} className="flex items-baseline gap-2">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-400" />
                   {h}
                 </li>
               ))}

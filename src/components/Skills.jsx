@@ -5,18 +5,25 @@ import CloudAnimation from './CloudAnimation'
 import MouseScroll from './MouseScroll'
 export default function Skills() {
   const skills = [
-    { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', experience: '3+ Years', description: 'Building dynamic and responsive user interfaces.' },
+    { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', experience: '2+ Years', description: 'Building dynamic and responsive user interfaces.' },
     { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', experience: '2+ Years', description: 'Enhancing code quality and maintainability.' },
-    { name: 'Tailwind CSS', icon: 'https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg', experience: '3+ Years', description: 'Rapidly styling applications with utility-first CSS.' },
-    { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', experience: '3+ Years', description: 'Developing scalable server-side applications.' },
-    { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', experience: '3+ Years', description: 'Creating robust APIs and web servers.' },
+    { name: 'Java', icon: 'https://www.vectorlogo.zone/logos/java/java-icon.svg', experience: '2+ Years', description: 'Building robust backend systems and applications.' },
+    { name: 'Spring Boot', icon: 'https://www.vectorlogo.zone/logos/springio/springio-icon.svg', experience: '2+ Years', description: 'Developing enterprise-grade applications and microservices.' },
+    { name: 'DSA', icon: 'https://cdn-icons-png.flaticon.com/512/9173/9173561.png', experience: '3+ Years', description: 'Implementing efficient algorithms and data structures.' },
+    { name: 'Gen AI', icon: 'https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg', experience: '1+ Year', description: 'Building AI-powered applications and integrations.' },
+    { name: 'MCP', icon: 'https://cdn-icons-png.flaticon.com/512/8002/8002121.png', experience: '1+ Year', description: 'Developing Model Context Protocol servers.' },
+    { name: 'Ollama', icon: 'https://avatars.githubusercontent.com/u/124478244?s=200&v=4', experience: '1+ Year', description: 'Working with local LLMs and AI models.' },
+    { name: 'SQL', icon: 'https://www.vectorlogo.zone/logos/mysql/mysql-icon.svg', experience: '3+ Years', description: 'Designing and optimizing database queries and schemas.' },
+    { name: 'CI/CD', icon: 'https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg', experience: '2+ Years', description: 'Implementing automated deployment pipelines.' },
+    { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', experience: '2+ Years', description: 'Developing scalable server-side applications.' },
+    { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', experience: '2+ Years', description: 'Creating robust APIs and web servers.' },
     { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', experience: '2+ Years', description: 'Managing NoSQL databases for flexible data storage.' },
     { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', experience: '2+ Years', description: 'Working with powerful relational databases.' },
     { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', experience: '2+ Years', description: 'Containerizing applications for consistent deployment.' },
     { name: 'AWS', icon: 'https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg', experience: '1+ Year', description: 'Leveraging cloud services for scalable solutions.' },
     { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', experience: '5+ Years', description: 'Managing code versions and collaborative development.' },
     { name: 'Jest', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg', experience: '2+ Years', description: 'Testing JavaScript applications for reliability.' },
-    { name: 'Cypress', icon: 'https://i.ibb.co/4j7xS4B/images.png', experience: '1+ Year', description: 'Conducting end-to-end testing for web apps.' }
+    { name: 'Tailwind CSS', icon: 'https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg', experience: '1+ Years', description: 'Rapidly styling applications with utility-first CSS.' }
   ]
 
   const trackRef = useRef(null)

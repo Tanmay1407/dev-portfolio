@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa'
+import { SiLeetcode } from 'react-icons/si'
 import AccentBlob from './AccentBlob'
 import SkillsMarquee from './SkillsMarquee'
 import AvatarCircle from './AvatarCircle'
@@ -43,6 +44,7 @@ export default function Hero() {
             </div>
             <div className="flex items-center justify-start gap-4 pt-4 pb-8 text-xl md:pb-0">
               <a href="https://github.com/Tanmay1407" aria-label="GitHub" className="hover:text-white/80"><FaGithub /></a>
+              <a href="https://leetcode.com/u/tanmaypatel1407" aria-label="LeetCode" className="hover:text-white/80"><SiLeetcode /></a>
               <a href="https://www.linkedin.com/in/tanmay-patel-14j2002/" aria-label="LinkedIn" className="hover:text-white/80"><FaLinkedin /></a>
               <a href="mailto:tanmay.patel0702@gmail.com" aria-label="Email" className="hover:text-white/80"><FaEnvelope /></a>
             </div>

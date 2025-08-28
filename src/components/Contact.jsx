@@ -25,7 +25,12 @@ export default function Contact() {
     setStatus('sending')
     setError('')
 
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
+    emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
       .then((result) => {
           console.log(result.text);
           setStatus('success')
@@ -65,7 +70,7 @@ export default function Contact() {
                       <label htmlFor="name" className="text-sm text-white/70">Name</label>
                       <input
                         id="name"
-                        name="user_name"
+                        name="from_name"
                         type="text"
                         required
                         className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 outline-none transition focus:border-cyan-400/40 focus:ring-2 focus:ring-cyan-400/20"
@@ -76,7 +81,7 @@ export default function Contact() {
                       <label htmlFor="email" className="text-sm text-white/70">Email</label>
                       <input
                         id="email"
-                        name="user_email"
+                        name="from_email"
                         type="email"
                         required
                         className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 outline-none transition focus:border-cyan-400/40 focus:ring-2 focus:ring-cyan-400/20"
@@ -89,7 +94,7 @@ export default function Contact() {
                     <label htmlFor="message" className="text-sm text-white/70">Message</label>
                     <textarea
                       id="message"
-                      name="message"
+                      name="message_html"
                       rows={6}
                       required
                       className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none transition focus:border-cyan-400/40 focus:ring-2 focus:ring-cyan-400/20"

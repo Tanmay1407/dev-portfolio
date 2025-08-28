@@ -7,40 +7,32 @@ import MouseScroll from './MouseScroll'
 
 const items = [
 	{
-		title: 'Project One',
-		desc: 'High-performance, responsive web application with delightful UX.',
-		url: '#',
+		title: 'Dev Portfolio',
+		desc: 'A modern, responsive portfolio website showcasing my projects and skills. Features smooth animations, dark theme, and a contact form. Built with React and TailwindCSS.',
+		url: 'https://github.com/Tanmay1407/dev-portfolio',
+		imageUrl: '/dev-project-image.png',
+		tech: ['React', 'TailwindCSS', 'Framer Motion', 'EmailJS']
 	},
 	{
-		title: 'Project Two',
-		desc: 'Scalable backend services with robust CI/CD and testing.',
-		url: '#',
+		title: 'WebRTC Video Calling',
+		desc: 'A real-time video calling application built with WebRTC, featuring a signalling server, and leveraging STUN/TURN servers for NAT traversal.',
+		url: 'https://github.com/Tanmay1407/webRTC-video-calling-app',
+		imageUrl: 'https://raw.githubusercontent.com/Tanmay1407/webRTC-video-calling-app/main/WebRTC_Framework_Flow.png',
+		tech: ['WebRTC', 'Socket.io', 'Express', 'React', 'Node.js', 'TailwindCSS']
 	},
 	{
-		title: 'Project Three',
-		desc: 'Interactive data visualization dashboard and analytics.',
-		url: '#',
-	},
-	{
-		title: 'Project Four',
-		desc: 'Realtime collaboration app with websockets and offline sync.',
-		url: '#',
-	},
-	{
-		title: 'Project Five',
-		desc: 'Headless commerce storefront with blazing-fast UX.',
-		url: '#',
-	},
+		title: 'AI Finance Platform',
+		desc: 'An AI-powered financial management platform that helps you track, analyze, and optimize your spending with real-time insights.',
+		url: 'https://github.com/Tanmay1407/ai-finance-platform',
+		imageUrl: '/ai-project-image.png',
+		tech: ['Next.js', 'Supabase', 'Tailwind', 'Prisma', 'Inngest', 'ArcJet', 'Shadcn UI']
+	}
 ]
 
 export default function Projects() {
 	const trackRef = useRef(null)
 	const [canPrev, setCanPrev] = useState(false)
 	const [canNext, setCanNext] = useState(false)
-	// Stable random seeds for images (one per item)
-	const imgSeedsRef = useRef(
-		items.map((_, idx) => `project-${idx}-${Math.random().toString(36).slice(2, 8)}`)
-	)
 
 	const updateArrows = () => {
 		const el = trackRef.current
@@ -124,31 +116,20 @@ export default function Projects() {
 							<motion.a
 								key={p.title}
 								href={p.url}
+								target="_blank"
+								rel="noopener noreferrer"
 								initial={{ opacity: 0, y: 16 }}
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, amount: 0.2 }}
 								transition={{ duration: 0.4, delay: i * 0.05 }}
 								className="project-card group card snap-center w-full shrink-0 overflow-hidden p-0 ring-1 ring-white/5 transition hover:ring-cyan-400/20 hover:shadow-[0_12px_70px_-18px_rgba(6,182,212,0.35)] sm:w-[calc(50%-0.625rem)] md:w-[calc(33.333%-0.833rem)]"
 							>
-								<div className="relative aspect-[4/3] overflow-hidden">
+								<div className="relative aspect-[16/9] overflow-hidden">
 									<img
-										src={`https://picsum.photos/seed/${imgSeedsRef.current[i]}/800/600`}
+										src={p.imageUrl}
 										loading="lazy"
-										referrerPolicy="no-referrer"
-										onError={(e) => {
-											const el = e.currentTarget
-											const stage = el.dataset.fallback || '0'
-											if (stage === '0') {
-												el.src = `https://source.unsplash.com/800x600/?technology,code&sig=${i}`
-												el.dataset.fallback = '1'
-											} else if (stage === '1') {
-												el.src = items[i]?.img || `https://placehold.co/800x600/png`
-												el.dataset.fallback = '2'
-											}
-										}}
-										data-fallback="0"
 										alt={p.title}
-										className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+										className="h-full w-full object-contain transition duration-500 group-hover:scale-105"
 									/>
 									<span className="absolute left-2 top-2 rounded-full border border-white/10 bg-white/10 px-2 py-0.5 text-xs text-white/80 backdrop-blur">
 										#{i + 1}
@@ -161,7 +142,7 @@ export default function Projects() {
 									</div>
 									<p className="mt-4 text-base text-white/70 mb-6">{p.desc}</p>
 									<div className="flex flex-wrap gap-2 text-sm text-white/60">
-										{['React', 'Node', 'Tailwind'].map((t) => (
+										{p.tech.map((t) => (
 											<span
 												key={t}
 												className="rounded-full border border-white/10 bg-white/5 px-2 py-1"
