@@ -193,4 +193,4 @@ Add components (Hero, Navbar, Contact, etc.), Tailwind classes for styling, and 
 
 ---
 
-Maintained by Deep Dubey. PRs and suggestions are welcome.
+Maintained by Tanmay Patel. PRs and suggestions are welcome.
