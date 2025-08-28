@@ -7,13 +7,13 @@ export default function Skills() {
   const skills = [
     { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', experience: '3+ Years', description: 'Building dynamic and responsive user interfaces.' },
     { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', experience: '2+ Years', description: 'Enhancing code quality and maintainability.' },
-    { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg', experience: '3+ Years', description: 'Rapidly styling applications with utility-first CSS.' },
+    { name: 'Tailwind CSS', icon: 'https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg', experience: '3+ Years', description: 'Rapidly styling applications with utility-first CSS.' },
     { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', experience: '3+ Years', description: 'Developing scalable server-side applications.' },
     { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', experience: '3+ Years', description: 'Creating robust APIs and web servers.' },
     { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', experience: '2+ Years', description: 'Managing NoSQL databases for flexible data storage.' },
     { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', experience: '2+ Years', description: 'Working with powerful relational databases.' },
     { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', experience: '2+ Years', description: 'Containerizing applications for consistent deployment.' },
-    { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg', experience: '1+ Year', description: 'Leveraging cloud services for scalable solutions.' },
+    { name: 'AWS', icon: 'https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg', experience: '1+ Year', description: 'Leveraging cloud services for scalable solutions.' },
     { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', experience: '5+ Years', description: 'Managing code versions and collaborative development.' },
     { name: 'Jest', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg', experience: '2+ Years', description: 'Testing JavaScript applications for reliability.' },
     { name: 'Cypress', icon: 'https://i.ibb.co/4j7xS4B/images.png', experience: '1+ Year', description: 'Conducting end-to-end testing for web apps.' }
