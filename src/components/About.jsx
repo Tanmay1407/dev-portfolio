@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import AccentBlob from './AccentBlob'
 import { FaCode, FaServer, FaTools } from 'react-icons/fa'
+import { HiOutlineExternalLink } from 'react-icons/hi'
 import MouseScroll from './MouseScroll'
 
 export default function About() {
@@ -30,10 +31,26 @@ export default function About() {
   ]
 
   const metrics = [
-    { k: '2+', v: 'Years' },
-    { k: '15+', v: 'Projects' },
-    { k: '350+', v: 'LeetCode Questions' },
-    { k: '8+', v: 'Certifications' }
+    { 
+      k: '2+', 
+      v: 'Years',
+      url: 'https://www.linkedin.com/in/tanmay-patel-14j2002/'
+    },
+    { 
+      k: '15+', 
+      v: 'Projects',
+      url: 'https://github.com/Tanmay1407'
+    },
+    { 
+      k: '350+', 
+      v: 'DSA Questions',
+      url: 'https://leetcode.com/u/tanmaypatel1407'
+    },
+    { 
+      k: '8+', 
+      v: 'Certifications',
+      url: 'https://drive.google.com/drive/folders/1lCrZuDRapwhrYhPx5M0NcpDy41-w_cQR'
+    }
   ]
 
   return (
@@ -73,10 +90,19 @@ export default function About() {
             </ul>
             <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {metrics.map((m) => (
-                <div key={m.v} className="glass rounded-2xl px-4 py-5 text-center">
+                <a
+                  key={m.v}
+                  href={m.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative glass rounded-2xl px-4 py-5 text-center transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-white/20"
+                >
+                  <div className="absolute top-2 right-2 text-white/40 transition-all duration-300 group-hover:text-white/80">
+                    <HiOutlineExternalLink className="h-4 w-4" />
+                  </div>
                   <div className="text-2xl font-extrabold tracking-tight text-white">{m.k}</div>
                   <div className="text-xs uppercase tracking-wide text-white/60">{m.v}</div>
-                </div>
+                </a>
               ))}
             </div>
           </div>

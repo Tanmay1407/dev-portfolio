@@ -29,8 +29,9 @@ export default function Hero() {
             <h1 className="bg-gradient-to-r from-white via-fuchsia-200 to-cyan-200 bg-clip-text text-4xl font-extrabold leading-tight text-transparent drop-shadow sm:text-5xl md:text-6xl xl:text-7xl">
               {name}
             </h1>
+            {/* Updated concise tagline with GenAI mention */}
             <p className="max-w-2xl text-white/70">
-              Full‑stack developer specializing in building exceptional digital experiences. Currently focused on modern web apps with React, Node, and cloud.
+              Software Engineer delivering scalable backends & refined interfaces. Driving impact with Node.js, Java/Spring, React, cloud-native architecture & GenAI—optimizing performance, reliability and developer velocity.
             </p>
             {/* Skill marquee under the hero intro */}
             <SkillsMarquee />

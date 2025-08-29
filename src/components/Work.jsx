@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import AccentBlob from './AccentBlob'
 import MouseScroll from './MouseScroll'
 import { useState } from 'react'
+import { FaLinkedin } from 'react-icons/fa'
 
 export default function Work() {
   const [activeTab, setActiveTab] = useState(0)
@@ -28,6 +29,7 @@ export default function Work() {
       company: 'KFin Technologies Limited',
       location: 'Hyderabad, TS',
       period: 'Feb 2024 – Present',
+      linkedinUrl: 'https://www.linkedin.com/company/wekfintech/posts/?feedView=all',
       roles: [
         {
           title: 'Senior Software Engineer',
@@ -52,9 +54,10 @@ export default function Work() {
       ]
     },
     {
-      company: 'Repsoft',
+      company: 'Repsoft Global',
       location: 'Hyderabad, TS',
       period: 'Jan 2023 – Jan 2024',
+      linkedinUrl: 'https://www.linkedin.com/company/repsoft-technologies-private-limited/posts/?feedView=all',
       roles: [
         {
           title: 'Android Developer',
@@ -95,16 +98,26 @@ export default function Work() {
           {/* Left: Company Tabs */}
           <div className="md:w-48 flex flex-col gap-4">
             {jobs.map((job, index) => (
-              <button
-                key={job.company}
-                onClick={() => handleTabChange(index)}
-                className={`relative rounded-md px-4 py-3 text-left text-sm font-medium transition-all duration-300
-                  ${activeTab === index 
-                    ? 'text-white bg-white/10 border border-white/20' 
-                    : 'text-white/60 hover:text-white hover:bg-white/5'}`}
-              >
-                {job.company}
-              </button>
+              <div key={job.company} className="relative group">
+                <button
+                  onClick={() => handleTabChange(index)}
+                  className={`relative w-full rounded-md px-4 py-3 text-left text-sm font-medium transition-all duration-300
+                    ${activeTab === index 
+                      ? 'text-white bg-white/10 border border-white/20' 
+                      : 'text-white/60 hover:text-white hover:bg-white/5'}`}
+                >
+                  {job.company}
+                </button>
+                <a
+                  href={job.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-1/2 -translate-y-1/2 right-2 p-2 text-white/40 hover:text-white/90 transition-colors duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FaLinkedin className="w-4 h-4" />
+                </a>
+              </div>
             ))}
           </div>
 
