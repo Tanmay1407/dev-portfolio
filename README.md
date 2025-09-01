@@ -31,4 +31,4 @@
 
 **Live Portfolio**: [View Demo](https://tanmay-patel.netlify.app)
 
-Built by **Tanmay Patel** - Full Stack Developer specializing in React, Java, and AI technologies.
+Built by **Tanmay Patel** - Software Engineer specializing in Node, Java, React and AI technologies.
