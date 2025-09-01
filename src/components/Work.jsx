@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion'
 import AccentBlob from './AccentBlob'
 import MouseScroll from './MouseScroll'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { FaLinkedin } from 'react-icons/fa'
 
 export default function Work() {
   const [activeTab, setActiveTab] = useState(0)
   const [expandedRoles, setExpandedRoles] = useState({})
+  const tabTrackRef = useRef(null)
+  const [canPrevTabs, setCanPrevTabs] = useState(false)
+  const [canNextTabs, setCanNextTabs] = useState(false)
 
   // Initialize first role as expanded when company tab changes
   const handleTabChange = (index) => {
@@ -67,7 +70,6 @@ export default function Work() {
             'Integrated RESTful APIs and implemented real-time data synchronization using Firebase, improving app responsiveness and user engagement by 45%.',
             'Optimized app performance by implementing efficient caching mechanisms and lazy loading, reducing app size by 30% and improving load times by 50%.',
             'Implemented comprehensive unit and UI testing using JUnit and Espresso, achieving 85% test coverage and reducing crash rates by 70%.',
-            'Collaborated with design and backend teams to deliver features on schedule, maintaining a 4.5+ star rating on the Google Play Store.'
           ]
         }
       ]
@@ -78,6 +80,39 @@ export default function Work() {
   useState(() => {
     if (jobs[0]?.roles[0]) {
       setExpandedRoles({ [jobs[0].roles[0].title]: true })
+    }
+  }, [])
+
+  // Update arrow enable state for tab scroller
+  const updateTabArrows = () => {
+    const el = tabTrackRef.current
+    if (!el) return
+    const { scrollLeft, scrollWidth, clientWidth } = el
+    setCanPrevTabs(scrollLeft > 2)
+    setCanNextTabs(scrollLeft + clientWidth < scrollWidth - 2)
+  }
+
+  const scrollTabs = (dir) => {
+    const el = tabTrackRef.current
+    if (!el) return
+    const child = el.querySelector('.company-tab')
+    const gap = 16 // gap-4
+    const amount = child ? (child.getBoundingClientRect().width + gap) * 1.2 : el.clientWidth * 0.6
+    el.scrollBy({ left: dir * amount, behavior: 'smooth' })
+    setTimeout(updateTabArrows, 260)
+  }
+
+  useEffect(() => {
+    updateTabArrows()
+    const el = tabTrackRef.current
+    if (!el) return
+    const onScroll = () => updateTabArrows()
+    el.addEventListener('scroll', onScroll, { passive: true })
+    const onResize = () => updateTabArrows()
+    window.addEventListener('resize', onResize)
+    return () => {
+      el.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
     }
   }, [])
 
@@ -96,29 +131,58 @@ export default function Work() {
         
         <div className="mt-8 flex flex-col md:flex-row gap-8">
           {/* Left: Company Tabs */}
-          <div className="md:w-48 flex flex-col gap-4">
-            {jobs.map((job, index) => (
-              <div key={job.company} className="relative group">
-                <button
-                  onClick={() => handleTabChange(index)}
-                  className={`relative w-full rounded-md px-4 py-3 text-left text-sm font-medium transition-all duration-300
-                    ${activeTab === index 
-                      ? 'text-white bg-white/10 border border-white/20' 
-                      : 'text-white/60 hover:text-white hover:bg-white/5'}`}
-                >
-                  {job.company}
-                </button>
-                <a
-                  href={job.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-1/2 -translate-y-1/2 right-2 p-2 text-white/40 hover:text-white/90 transition-colors duration-300"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FaLinkedin className="w-4 h-4" />
-                </a>
-              </div>
-            ))}
+          <div className="relative md:w-60">
+            {/* Mobile scroll arrows */}
+            <button
+              aria-label="Scroll companies left"
+              onClick={() => scrollTabs(-1)}
+              disabled={!canPrevTabs}
+              className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 flex items-center justify-center rounded-full border border-white/15 bg-slate-900/60 backdrop-blur text-white/70 disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button
+              aria-label="Scroll companies right"
+              onClick={() => scrollTabs(1)}
+              disabled={!canNextTabs}
+              className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 flex items-center justify-center rounded-full border border-white/15 bg-slate-900/60 backdrop-blur text-white/70 disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+            <div
+              ref={tabTrackRef}
+              className="md:w-60 flex gap-4 md:flex-col hide-scrollbar overflow-x-auto -mx-4 px-12 md:px-0 md:mx-0 md:overflow-visible snap-x snap-mandatory md:snap-none scroll-smooth"
+            >
+              {jobs.map((job, index) => (
+                <div key={job.company} className="company-tab relative group shrink-0 snap-center md:snap-none min-w-[70%] xs:min-w-[60%] sm:min-w-[50%] md:min-w-0">
+                  <button
+                    onClick={() => handleTabChange(index)}
+                    className={`relative w-full rounded-md px-4 py-3 pr-10 text-left text-sm font-medium transition-all duration-300 whitespace-normal md:whitespace-nowrap
+                      ${activeTab === index 
+                        ? 'text-white bg-white/10 border border-white/20 shadow-inner md:bg-white/10 md:border-white/20' 
+                        : 'text-white/60 hover:text-white hover:bg-white/5 md:hover:bg-white/5'} 
+                      ${activeTab === index 
+                        ? 'md:bg-white/10 bg-gradient-to-b from-white/15 to-white/5 border-t-2 border-t-cyan-400/60 rounded-t-lg rounded-b-none shadow-lg' 
+                        : 'md:bg-transparent bg-white/5 border border-white/10 rounded-lg hover:bg-white/10'}`}
+                  >
+                    <span className="block">{job.company}</span>
+                    {/* Active underline - only for desktop */}
+                    <span className={`pointer-events-none absolute left-3 right-3 bottom-1 h-[3px] rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-400 transition-opacity duration-300 hidden md:block ${activeTab === index ? 'opacity-100' : 'opacity-0'}`}/>
+                    {/* Mobile active indicator - top border */}
+                    <span className={`pointer-events-none absolute left-0 right-0 top-0 h-[3px] rounded-t-md bg-gradient-to-r from-cyan-400 to-fuchsia-400 transition-opacity duration-300 md:hidden ${activeTab === index ? 'opacity-100' : 'opacity-0'}`}/>
+                  </button>
+                  <a
+                    href={job.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-1/2 -translate-y-1/2 right-2 p-1 text-white/40 hover:text-white/90 transition-colors duration-300"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <FaLinkedin className="w-4 h-4" />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Right: Content */}

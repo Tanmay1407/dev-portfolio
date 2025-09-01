@@ -9,8 +9,10 @@ export default function Skills() {
     { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', experience: '2+ Years', description: 'Enhancing code quality and maintainability.' },
     { name: 'Java', icon: 'https://www.vectorlogo.zone/logos/java/java-icon.svg', experience: '2+ Years', description: 'Building robust backend systems and applications.' },
     { name: 'Spring Boot', icon: 'https://www.vectorlogo.zone/logos/springio/springio-icon.svg', experience: '2+ Years', description: 'Developing enterprise-grade applications and microservices.' },
+    { name: 'Microservices', icon: './microservice_skill.png', experience: '2+ Years', description: 'Designing and implementing distributed systems with microservices architecture.' },
     { name: 'DSA', icon: 'https://cdn-icons-png.flaticon.com/512/9173/9173561.png', experience: '3+ Years', description: 'Implementing efficient algorithms and data structures.' },
     { name: 'Gen AI', icon: 'https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg', experience: '1+ Year', description: 'Building AI-powered applications and integrations.' },
+    { name: 'Agentic AI', icon: 'https://cdn-icons-png.flaticon.com/512/4712/4712027.png', experience: '1+ Year', description: 'Developing autonomous AI agents and intelligent automation systems.' },
     { name: 'MCP', icon: 'https://cdn-icons-png.flaticon.com/512/8002/8002121.png', experience: '1+ Year', description: 'Developing Model Context Protocol servers.' },
     { name: 'Ollama', icon: 'https://avatars.githubusercontent.com/u/124478244?s=200&v=4', experience: '1+ Year', description: 'Working with local LLMs and AI models.' },
     { name: 'SQL', icon: 'https://www.vectorlogo.zone/logos/mysql/mysql-icon.svg', experience: '3+ Years', description: 'Designing and optimizing database queries and schemas.' },
@@ -22,7 +24,7 @@ export default function Skills() {
     { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', experience: '2+ Years', description: 'Containerizing applications for consistent deployment.' },
     { name: 'AWS', icon: 'https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg', experience: '1+ Year', description: 'Leveraging cloud services for scalable solutions.' },
     { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', experience: '5+ Years', description: 'Managing code versions and collaborative development.' },
-    { name: 'Jest', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg', experience: '2+ Years', description: 'Testing JavaScript applications for reliability.' },
+    { name: 'Testing (Jest/JUnit)', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg', experience: '2+ Years', description: 'Comprehensive testing with Jest for JavaScript and JUnit for Java applications.' },
     { name: 'Tailwind CSS', icon: 'https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg', experience: '1+ Years', description: 'Rapidly styling applications with utility-first CSS.' }
   ]
 
@@ -38,15 +40,16 @@ export default function Skills() {
 		setCanNext(scrollLeft + clientWidth < scrollWidth - 1)
 	}
 
-	const scrollByCards = (dir) => {
-		const el = trackRef.current
-		if (!el) return
-		const card = el.querySelector('.skill-card-wrapper')
-		const gap = 24 // approx gap-6
-		const amount = card ? card.getBoundingClientRect().width + gap : el.clientWidth * 0.8
-		el.scrollBy({ left: dir * amount, behavior: 'smooth' })
-		setTimeout(updateArrows, 300)
-	}
+  const scrollByCards = (dir) => {
+    const el = trackRef.current
+    if (!el) return
+    // Scroll by one full column (pair of cards)
+    const column = el.querySelector('.skill-column')
+    const gap = 24 // gap between columns
+    const amount = column ? column.getBoundingClientRect().width + gap : el.clientWidth
+    el.scrollBy({ left: dir * amount, behavior: 'smooth' })
+    setTimeout(updateArrows, 320)
+  }
 
 	useEffect(() => {
 		updateArrows()
@@ -61,6 +64,10 @@ export default function Skills() {
 			window.removeEventListener('resize', onResize)
 		}
 	}, [])
+
+  // Build columns of two skills each for mobile display
+  const mobileColumns = []
+  for (let i = 0; i < skills.length; i += 2) mobileColumns.push(skills.slice(i, i + 2))
 
   return (
   <section id="skills" className="relative min-h-screen overflow-hidden py-24 flex items-center justify-center">
@@ -95,14 +102,43 @@ export default function Skills() {
 						<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
 					</button>
 
-          <div 
+          {/* Mobile: horizontal snap columns, each column = 2 cards */}
+          <div
             ref={trackRef}
-            className="hide-scrollbar -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 py-8 md:mx-0 md:px-0 md:snap-none md:flex-wrap md:justify-center"
+            className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto py-8 gap-6 pl-[11vw] pr-[11vw] md:hidden"
           >
-            {skills.map((skill, index) => (
+            {mobileColumns.map((col, cIdx) => (
+              <div key={cIdx} className="skill-column shrink-0 snap-center flex flex-col gap-6 items-center w-[78vw] max-w-[340px]">
+                {col.map((skill, index) => (
+                  <motion.div
+                    key={skill.name}
+                    className="skill-card-wrapper w-full mx-auto"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="skill-card">
+                      <div className="skill-card-front">
+                        <img src={skill.icon} alt={skill.name} className="h-12 w-12" />
+                        <span className="mt-2 text-lg font-semibold">{skill.name}</span>
+                      </div>
+                      <div className="skill-card-back">
+                        <h3 className="text-base font-bold">{skill.name}</h3>
+                        <p className="font-medium text-sky-300 text-sm">{skill.experience}</p>
+                        <p className="mt-2 text-xs text-slate-300 leading-relaxed">{skill.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop / tablet: original wrap grid */}
+          <div className="hidden md:flex md:flex-wrap md:justify-center md:gap-6 md:py-8">
+            {skills.map((skill) => (
               <motion.div
-                key={index}
-                className="skill-card-wrapper shrink-0 snap-center md:shrink"
+                key={skill.name}
+                className="skill-card-wrapper"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
@@ -112,9 +148,9 @@ export default function Skills() {
                     <span className="mt-2 text-lg font-semibold">{skill.name}</span>
                   </div>
                   <div className="skill-card-back">
-                    <h3 className="text-lg font-bold">{skill.name}</h3>
-                    <p className="font-semibold text-sky-300">{skill.experience}</p>
-                    <p className="mt-2 text-sm text-slate-300">{skill.description}</p>
+                    <h3 className="text-base font-bold">{skill.name}</h3>
+                    <p className="font-medium text-sky-300 text-sm">{skill.experience}</p>
+                    <p className="mt-2 text-xs text-slate-300 leading-relaxed">{skill.description}</p>
                   </div>
                 </div>
               </motion.div>
