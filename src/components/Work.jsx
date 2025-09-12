@@ -36,7 +36,7 @@ export default function Work() {
       roles: [
         {
           title: 'Senior Software Engineer',
-          period: 'Mar 2025 – Present',
+          period: 'Aug 2025 – Present',
           achievements: [
             'Architected and delivered enterprise-scale REST API solutions using Node.js and TypeScript, achieving 70x performance improvement (70s to 1s response times) for critical financial services operations.',
             'Led legacy system modernization initiatives by refactoring complex SQL Server stored procedures into maintainable Node.js microservices, reducing server load by 30% and improving system scalability.',
@@ -46,7 +46,7 @@ export default function Work() {
         },
         {
           title: 'Software Engineer',
-          period: 'Feb 2024 – Mar 2025',
+          period: 'Feb 2024 – July 2025',
           achievements: [
             'Developed robust backend systems using Java Spring Boot and Apache Camel for financial transaction processing, focusing on modularity and maintainability in high-stakes environments.',
             'Successfully migrated legacy SQL-based transaction systems to modern Java implementations, enabling parallel processing capabilities and achieving 40% increase in overall system efficiency.',
