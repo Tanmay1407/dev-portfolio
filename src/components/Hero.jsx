@@ -39,7 +39,7 @@ export default function Hero() {
               <a href="#projects" className="btn ring-1 ring-white/10">
                 View Projects
               </a>
-                <a href="https://drive.google.com/file/d/17rdGlZI6XvxZgMSA8w0YbDb8h7BGQEN-/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="btn bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-slate-900 shadow-lg shadow-fuchsia-500/10 hover:brightness-110">
+                <a href="https://docsend.com/v/f262h/tanmaycv" target="_blank" rel="noopener noreferrer" className="btn bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-slate-900 shadow-lg shadow-fuchsia-500/10 hover:brightness-110">
                   <FaDownload className="mr-2" /> Download Resume
                 </a>
             </div>
