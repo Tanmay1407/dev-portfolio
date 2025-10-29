@@ -75,7 +75,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="https://docsend.com/v/f262h/tanmaycv"
+                href="https://drive.google.com/file/d/17rdGlZI6XvxZgMSA8w0YbDb8h7BGQEN-/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-500 px-4 py-2 text-sm font-medium text-slate-900 transition hover:brightness-110"
@@ -112,7 +112,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="https://docsend.com/v/f262h/tanmaycv"
+                href="https://drive.google.com/file/d/17rdGlZI6XvxZgMSA8w0YbDb8h7BGQEN-/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 w-full text-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-500 px-4 py-2.5 text-sm font-medium text-slate-900 transition hover:brightness-110"
